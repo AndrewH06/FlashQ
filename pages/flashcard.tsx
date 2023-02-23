@@ -110,9 +110,6 @@ const FlashCard = () => {
               donezo={donezo}
               setDonezo={setDonezo}
             />
-            <button onClick={copy} className="text-gray-600">
-              Copy
-            </button>
             <GoogleAd />
           </div>
         )}

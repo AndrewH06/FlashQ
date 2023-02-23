@@ -50,6 +50,7 @@ const FlashCardPreview = ({ text, key }: NewCardProps) => {
             back={text[i].back}
             preview={true}
             reset={reset}
+            key={0}
           />
         </div>
       </div>
