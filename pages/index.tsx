@@ -27,14 +27,6 @@ export default function Home() {
 
   return (
     <>
-      <Head>
-        <title>FlashQ - The fastest way to study.</title>
-        <meta
-          name="description"
-          content="FlashQ is the fastest way to study and prepare yourself for exams. It uses AI to generate flashcards or quizzes from your notes. FlashQ saves you from the hassle of retyping your notes into studyable questions. "
-        />
-        <link rel="icon" href="/FlashQ.ico" />
-      </Head>
       <div className="min-h-screen bg-zinc-100/70">
         <Header />
         <main className="flex flex-col items-center gap-12">
