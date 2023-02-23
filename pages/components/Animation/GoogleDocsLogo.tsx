@@ -1,6 +1,6 @@
 import type { IconBaseProps } from "react-icons";
 
-export const GoogleDocsLogo: React.FC<IconBaseProps> = (props) => (
+const GoogleDocsLogo: React.FC<IconBaseProps> = (props) => (
   <svg
     // version="1.1"
     // id="Layer_1"
@@ -32,3 +32,5 @@ export const GoogleDocsLogo: React.FC<IconBaseProps> = (props) => (
     </g>
   </svg>
 );
+
+export default GoogleDocsLogo;

@@ -22,7 +22,7 @@ const ChatInput = ({ onSend, donezo, setDonezo }: InputProps) => {
           <textarea
             className="w-full rounded-lg py-3 px-4 h-48 text-start border-2 bg-white border-slate-200"
             value={input}
-            maxLength={2048}
+            maxLength={4098}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => handleKeyDown(e)}
             placeholder="Input your notes"
@@ -30,9 +30,9 @@ const ChatInput = ({ onSend, donezo, setDonezo }: InputProps) => {
           <p
             className="text-right"
             style={{
-              color: input.length >= 2048 ? "rgb(220 0 0)" : "rgb(209 213 219)",
+              color: input.length >= 4098 ? "rgb(220 0 0)" : "rgb(209 213 219)",
             }}>
-            {input.length}/2048
+            {input.length}/4098
           </p>
         </>
       )}

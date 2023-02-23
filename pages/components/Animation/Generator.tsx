@@ -6,7 +6,7 @@ import { BiLoaderAlt } from "react-icons/bi";
 
 type Props = { stage: Stages; setStage: (stage: Stages) => void; text: string };
 
-export const Generator: React.FC<Props> = ({ stage, setStage, text }) => {
+const Generator: React.FC<Props> = ({ stage, setStage, text }) => {
   const generateButtonRef = useRef<HTMLButtonElement>(null);
   const [pasteText, setPasteText] = useState<boolean>(false);
 
@@ -82,3 +82,5 @@ export const Generator: React.FC<Props> = ({ stage, setStage, text }) => {
     </AnimatePresence>
   );
 };
+
+export default Generator;

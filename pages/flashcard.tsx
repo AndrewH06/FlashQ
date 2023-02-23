@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import autoAnimate from "@formkit/auto-animate";
 import { AiOutlineLoading } from "react-icons/ai";
-import { motion, AnimatePresence } from "framer-motion";
 
 import ChatInput from "./components/ChatInput";
 import FlashCardComponent from "./components/FlashCardComponent";
 import FlashCardPreview from "./components/FlashCardPreview";
 import Header from "./components/Header";
+import GoogleAd from "./components/GoogleAd";
 
 export interface CardProps {
   text: string;
@@ -65,12 +65,28 @@ const FlashCard = () => {
     }
   };
 
+  const copy = () => {
+    let copiedNotes = "";
+    cards?.text.forEach((card) => {
+      copiedNotes +=
+        "Front: " +
+        "\n" +
+        card.front +
+        "\n" +
+        "Back: " +
+        "\n" +
+        card.back +
+        "\n\n";
+    }, copiedNotes);
+    navigator.clipboard.writeText(copiedNotes);
+  };
+
   useEffect(() => {
     parent.current && autoAnimate(parent.current);
   }, [parent]);
 
   return (
-    <div className="min-h-screen bg-zinc-100/70">
+    <div className="min-h-screen pb-16 bg-zinc-100/70">
       <Header />
       <main
         ref={parent}
@@ -94,25 +110,34 @@ const FlashCard = () => {
               donezo={donezo}
               setDonezo={setDonezo}
             />
+            <button onClick={copy} className="text-gray-600">
+              Copy
+            </button>
+            <GoogleAd />
           </div>
         )}
         {loading && (
-          <button
-            className="font-semibold text-lg flex gap-2 items-center justify-center w-48 h-[48px] text-zinc-800/50 bg-gradient-to-t from-yellow-300/40  to-yellow-300/30 rounded-xl"
-            disabled={true}>
-            <AiOutlineLoading className="animate-spin" />
-            Generating
-          </button>
+          <>
+            <button
+              className="font-semibold text-lg flex gap-2 items-center justify-center w-48 h-[48px] text-zinc-800/50 bg-gradient-to-t from-yellow-300/40  to-yellow-300/30 rounded-xl"
+              disabled={true}>
+              <AiOutlineLoading className="animate-spin" />
+              Generating
+            </button>
+          </>
         )}
         {cards && (
           <div className="flex flex-col gap-6 w-full items-center">
+            <GoogleAd />
             <div className="flex w-full max-w-2xl">
               <FlashCardPreview text={cards.text} key={cards.key} />
             </div>
             <div className="flex flex-col gap-1 w-full max-w-6xl">
               <div className="flex justify-between">
                 <p className="text-gray-600">All cards</p>
-                <p className="text-gray-600">Copy</p>
+                <button onClick={copy} className="text-gray-600">
+                  Copy
+                </button>
               </div>
               <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
                 {cards.text.map((card: TextProps, index) => (

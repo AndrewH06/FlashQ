@@ -1,10 +1,9 @@
 import type { Stages } from "../Animation";
 import { useEffect, useRef, useState } from "react";
-import { animate, motion, AnimatePresence, useIsPresent } from "framer-motion";
-
-import cn from "classnames";
+import { animate, motion, AnimatePresence } from "framer-motion";
 import { TbCheck } from "react-icons/tb";
-import { GoogleDocsLogo } from "./GoogleDocsLogo";
+
+import GoogleDocsLogo from "./GoogleDocsLogo";
 
 type Props = {
   stage: Stages;
@@ -12,12 +11,10 @@ type Props = {
   text: string;
 };
 
-export const Notes: React.FC<Props> = ({ stage, setStage, text }) => {
-  const isPresent = useIsPresent();
-  const words = useRef<HTMLParagraphElement>(null);
+const Notes: React.FC<Props> = ({ stage, setStage, text }) => {
   const [currentCharHighlight, setCurrentCharHighlight] = useState<number>(0);
 
-  const chars = Array.from({ length: text.length }).map((_, i) => {
+  const chars = Array.from({ length: text?.length }).map((_, i) => {
     return text.charAt(i);
   });
 
@@ -44,8 +41,6 @@ export const Notes: React.FC<Props> = ({ stage, setStage, text }) => {
   };
 
   useEffect(() => {
-    console.log(words);
-    words.current?.click();
     highlightText();
   }, []);
 
@@ -77,7 +72,7 @@ export const Notes: React.FC<Props> = ({ stage, setStage, text }) => {
             </div>
           </div>
           <div className="relative px-16 py-8 flex flex-col items-center justify-center">
-            <p ref={words} className="overflow">
+            <p className="overflow">
               {chars.map((char, i) => (
                 <span
                   key={i}
@@ -110,3 +105,5 @@ export const Notes: React.FC<Props> = ({ stage, setStage, text }) => {
     </AnimatePresence>
   );
 };
+
+export default Notes;

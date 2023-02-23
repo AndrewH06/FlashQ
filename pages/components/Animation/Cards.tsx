@@ -7,7 +7,7 @@ type Props = {
   setStage: (stage: Stages) => void;
 };
 
-export const Cards: React.FC<Props> = (props) => {
+const Cards: React.FC<Props> = (props) => {
   const cards = [
     {
       front: "What is FlashQ?",
@@ -15,7 +15,7 @@ export const Cards: React.FC<Props> = (props) => {
     },
     {
       front: "How does FlashQ work?",
-      back: "It uses AI to generate flashcards or quizzes from your notes.",
+      back: "It uses AI to generate flashcards from your notes.",
     },
     {
       front: "Why is FlashQ awesome?",
@@ -36,3 +36,5 @@ export const Cards: React.FC<Props> = (props) => {
     </AnimatePresence>
   );
 };
+
+export default Cards;
