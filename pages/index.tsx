@@ -1,9 +1,7 @@
 "use client";
-import Head from "next/head";
 import Link from "next/link";
 import { useState } from "react";
 import { TbArrowRight } from "react-icons/tb";
-import { TiFlash } from "react-icons/ti";
 import Animation from "./components/Animation";
 import Header from "./components/Header";
 
@@ -27,16 +25,18 @@ export default function Home() {
 
   return (
     <>
-      <div className="min-h-screen bg-zinc-100/70">
+      <div className="min-h-screen bg-zinc-100/70 pb-24">
         <Header />
-        <main className="flex flex-col items-center gap-12">
+        <main className="flex flex-col items-center gap-12 px-12 md:px-36">
           <div className="flex flex-col items-center mt-20 gap-4">
-            <div className="flex font-bold text-5xl text-zinc-800">
-              <h2>The&nbsp;</h2>
-              <h2 className="underline decoration-yellow-300 decoration-4 underline-offset-2">
-                fastest
-              </h2>
-              <h2>&nbsp;way to study.</h2>
+            <div className="flex flex-col md:gap-3 md:flex-row font-bold text-5xl text-zinc-800">
+              <div className="flex gap-3">
+                <h2>The</h2>
+                <h2 className="underline decoration-yellow-300 decoration-6 underline-offset-2">
+                  fastest
+                </h2>
+              </div>
+              <h2>way to study.</h2>
             </div>
             <p className="text-zinc-600 text-lg text-center max-w-[500px] word-break">
               Harness the power of AI and turn your notes into study material in
@@ -56,9 +56,7 @@ export default function Home() {
               />
             </Link>
           </div>
-          <div className="w-full max-w-7xl h-[380px]">
-            <Animation />
-          </div>
+          <Animation />
         </main>
       </div>
     </>

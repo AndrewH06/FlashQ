@@ -6,12 +6,13 @@ import { TbCheck } from "react-icons/tb";
 import GoogleDocsLogo from "./GoogleDocsLogo";
 
 type Props = {
+  isMobile: boolean;
   stage: Stages;
   setStage: (stage: Stages) => void;
   text: string;
 };
 
-const Notes: React.FC<Props> = ({ stage, setStage, text }) => {
+const Notes: React.FC<Props> = ({ isMobile, stage, setStage, text }) => {
   const [currentCharHighlight, setCurrentCharHighlight] = useState<number>(0);
 
   const chars = Array.from({ length: text?.length }).map((_, i) => {
@@ -46,12 +47,12 @@ const Notes: React.FC<Props> = ({ stage, setStage, text }) => {
 
   return (
     <AnimatePresence>
-      {stage === "notes" || stage === "generator" ? (
+      {stage === "notes" || (stage === "generator" && !isMobile) ? (
         <motion.div
           initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0 }}
-          className="bg-white w-full max-w-[50%] rounded-lg overflow-scroll">
+          className="absolute md:relative bg-white w-full max-w-[80%] md:max-w-[50%] rounded-lg overflow-scroll">
           <div className="flex items-center justify-between w-full border-b border-black-20 py-4 px-6">
             <div className="flex items-center gap-4">
               <GoogleDocsLogo className="text-3xl" />
@@ -67,9 +68,11 @@ const Notes: React.FC<Props> = ({ stage, setStage, text }) => {
                 </div>
               </div>
             </div>
-            <div>
-              <div className="h-10 w-10 bg-gray-200/50 rounded-full" />
-            </div>
+            {!isMobile && (
+              <div>
+                <div className="h-10 w-10 bg-gray-200/50 rounded-full" />
+              </div>
+            )}
           </div>
           <div className="relative px-16 py-8 flex flex-col items-center justify-center">
             <p className="overflow">

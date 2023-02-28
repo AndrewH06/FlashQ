@@ -4,9 +4,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import { TiFlash } from "react-icons/ti";
 import { BiLoaderAlt } from "react-icons/bi";
 
-type Props = { stage: Stages; setStage: (stage: Stages) => void; text: string };
+type Props = {
+  isMobile: boolean;
+  stage: Stages;
+  setStage: (stage: Stages) => void;
+  text: string;
+};
 
-const Generator: React.FC<Props> = ({ stage, setStage, text }) => {
+const Generator: React.FC<Props> = ({ isMobile, stage, setStage, text }) => {
   const generateButtonRef = useRef<HTMLButtonElement>(null);
   const [pasteText, setPasteText] = useState<boolean>(false);
 
@@ -33,7 +38,7 @@ const Generator: React.FC<Props> = ({ stage, setStage, text }) => {
           exit={{ opacity: 0 }}
           className="relative bg-white w-full rounded-lg overflow-scroll">
           <div className="relative px-12 py-8 flex flex-col items-center justify-center">
-            <div className="flex items-center gap-2 w-full justify-between mb-4">
+            <div className="flex flex-col gap-4 md:gap-2 md:flex-row items-center w-full justify-between mb-4">
               <h1 className="flex gap-[0.15rem] justify-center text-3xl font-bold">
                 <TiFlash className="text-yellow-400 text-4xl" />
                 FlashQ

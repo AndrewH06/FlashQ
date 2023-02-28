@@ -37,10 +37,10 @@ const FlashCardPreview = ({ text, key }: NewCardProps) => {
     return <div className="text-center">Error, please try again later.</div>;
 
   return (
-    <div className="flex flex-col w-full gap-2">
+    <div className="flex flex-col w-full max-w-[320px] md:max-w-[650px] gap-2">
       <div className="flex gap-2 items-center">
         <div
-          className="flex min-h-[325px] w-full transition-all duration-150"
+          className="flex min-h-[240px] md:min-h-[325px] w-full transition-all duration-150"
           style={{
             transform: leave ? "translateX(-75px)" : "",
             opacity: leave ? 0 : 1,

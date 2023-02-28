@@ -29,7 +29,7 @@ const Cards: React.FC<Props> = (props) => {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, transition: { delay: 0.5 } }}
-          className="absolute w-full max-w-[45%]">
+          className="absolute flex w-full justify-center">
           <FlashCardPreview text={cards} key={0} />
         </motion.div>
       )}

@@ -35,35 +35,40 @@ const FlashCard = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [donezo, setDonezo] = useState<boolean>(false);
   const [copied, setCopied] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
   const parent = useRef(null);
 
   const callApi = async (input: string) => {
-    setLoading(true);
+    try {
+      setLoading(true);
 
-    const response = await fetch("/api/generate-flash", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        prompt: input,
-      }),
-    }).then((response) => response.json());
-    setLoading(false);
+      const response = await fetch("/api/generate-flash", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          prompt: input,
+        }),
+      }).then((response) => response.json());
+      setLoading(false);
 
-    if (response.text) {
-      const botCards: CardProps = {
-        text: response.text,
-        key: new Date().getTime(),
-      };
-      const jsonText: Array<TextProps> = JSON.parse(botCards.text);
-      const newCards: NewCardProps = {
-        text: jsonText,
-        key: botCards.key,
-      };
-      setCards(newCards);
-    } else {
-      // error
+      if (response.text) {
+        const botCards: CardProps = {
+          text: response.text,
+          key: new Date().getTime(),
+        };
+        const jsonText: Array<TextProps> = JSON.parse(botCards.text);
+        const newCards: NewCardProps = {
+          text: jsonText,
+          key: botCards.key,
+        };
+        setCards(newCards);
+      } else {
+        setError(true);
+      }
+    } catch (err) {
+      setError(true);
     }
   };
 
@@ -83,21 +88,25 @@ const FlashCard = () => {
     parent.current && autoAnimate(parent.current);
   }, [parent]);
 
+  if (error) <div>Sorry there was an error, please try again later.</div>;
+
   return (
     <div className="min-h-screen pb-16 bg-zinc-100/70">
       <Header />
       <main
         ref={parent}
-        className="flex flex-col gap-6 items-center px-4 md:px-20 mt-20">
+        className="flex flex-col gap-6 items-center px-12 md:px-36 mt-20">
         {!donezo && (
           <div className="w-full max-w-7xl flex flex-col gap-8">
             <div className="text-center items-center flex flex-col gap-4">
-              <div className="flex text-4xl font-bold">
-                <h4>Let's make&nbsp;</h4>
-                <h4 className="underline decoration-yellow-300 decoration-4 underline-offset-2">
-                  flashcards
-                </h4>
-                <h4>.</h4>
+              <div className="flex flex-col md:flex-row text-5xl md:gap-3 font-bold">
+                <h4>Make some</h4>
+                <div className="flex">
+                  <h4 className="underline decoration-yellow-300 decoration-4 underline-offset-2">
+                    flashcards
+                  </h4>
+                  <h4>.</h4>
+                </div>
               </div>
               <p className="text-zinc-600 text-lg text-center max-w-[500px] word-break">
                 Paste in your notes and we'll do the rest.
