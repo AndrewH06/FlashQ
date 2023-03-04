@@ -5,21 +5,6 @@ import { TbArrowRight } from "react-icons/tb";
 import Animation from "./components/Animation";
 import Header from "./components/Header";
 
-const cards = [
-  {
-    title: "Flash Cards",
-    link: "/flashcard",
-    text: "Practice with AI generated flash cards. No more writing them out. Just type your notes and we'll do the rest.",
-    left: true,
-  },
-  {
-    title: "Quizzes",
-    link: "/quiz",
-    text: "Make some",
-    left: false,
-  },
-];
-
 export default function Home() {
   const [buttonHover, setButtonHover] = useState<Boolean>(false);
 
