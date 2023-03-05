@@ -14,12 +14,12 @@ const Header = () => {
           </h1>
         </Link>
         <div className="flex gap-4 text-xl text-gray-700">
-          <Link href="/">
+          {/* <Link href="/">
             <FaTiktok />
           </Link>
           <Link href="/">
             <GrInstagram />
-          </Link>
+          </Link> */}
         </div>
       </div>
     </header>

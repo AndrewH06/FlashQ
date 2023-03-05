@@ -7,7 +7,6 @@ import ChatInput from "./components/ChatInput";
 import FlashCardComponent from "./components/FlashCardComponent";
 import FlashCardPreview from "./components/FlashCardPreview";
 import Header from "./components/Header";
-import GoogleAd from "./components/GoogleAd";
 
 export interface CardProps {
   text: string;
@@ -117,7 +116,6 @@ const FlashCard = () => {
               donezo={donezo}
               setDonezo={setDonezo}
             />
-            <GoogleAd />
           </div>
         )}
         {loading && (
@@ -132,7 +130,6 @@ const FlashCard = () => {
         )}
         {cards && (
           <div className="flex flex-col gap-12 w-full items-center">
-            <GoogleAd />
             <div className="flex w-full max-w-2xl">
               <FlashCardPreview text={cards.text} key={cards.key} />
             </div>
