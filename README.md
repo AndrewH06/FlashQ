@@ -1,4 +1,4 @@
-## FlashQ
+## FlashQ - BETA
 
 Create study material from your notes using AI.
 
