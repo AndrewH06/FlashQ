@@ -26,9 +26,14 @@ export default async function handler(
     return new Response("Please input a prompt", { status: 400 });
   }
 
-  const aiResult = await openai.createCompletion({
-    model: "text-davinci-003",
-    prompt: `Turn these notes into flashcards and format them as a json object with the keys "front" and "back" where "front" contains a question or definition and "back" contains the answer: ${prompt}`,
+  const aiResult = await openai.createChatCompletion({
+    model: "gpt-3.5-turbo",
+    messages: [
+      {
+        role: "user",
+        content: `Turn these notes into flashcards and format them as a json object with the keys "front" and "back" where "front" contains a question or definition and "back" contains the answer: ${prompt}`,
+      },
+    ],
     temperature: 0.3,
     max_tokens: 2048,
     frequency_penalty: 0,
@@ -36,6 +41,12 @@ export default async function handler(
   });
 
   const response =
-    aiResult.data.choices[0].text?.trim() || "Sorry, there was an error";
+    (aiResult &&
+      aiResult.data &&
+      aiResult.data.choices &&
+      aiResult.data.choices[0] &&
+      aiResult.data.choices[0].message &&
+      aiResult.data.choices[0].message.content) ||
+    "Sorry, there was an error";
   res.status(200).json({ text: response });
 }

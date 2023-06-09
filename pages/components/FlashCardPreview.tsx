@@ -4,7 +4,7 @@ import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { NewCardProps } from "../flashcard";
 import FlashCardComponent from "./FlashCardComponent";
 
-const FlashCardPreview = ({ text, key }: NewCardProps) => {
+const FlashCardPreview = ({ text }: NewCardProps) => {
   const [i, setI] = useState(0);
   const [leave, setLeave] = useState(false);
   const [reset, setReset] = useState(false);
@@ -50,7 +50,6 @@ const FlashCardPreview = ({ text, key }: NewCardProps) => {
             back={text[i].back}
             preview={true}
             reset={reset}
-            key={0}
           />
         </div>
       </div>

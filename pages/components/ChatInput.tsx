@@ -1,19 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { InputProps } from "../flashcard";
+import { encode } from "gpt-tokenizer";
 
 const ChatInput = ({ onSend, donezo, setDonezo }: InputProps) => {
   const [input, setInput] = useState("");
+  const [tokens, setTokens] = useState<number[]>([]);
 
   const sendInput = () => {
-    onSend(input);
-    setDonezo(true);
-  };
-
-  const handleKeyDown = (e: any) => {
-    if (e.key === "Enter" || e.keyCode === 13) {
-      sendInput();
+    if (tokens.length > 2007) {
+      alert("Too many tokens! Please shorten your input.");
+      return;
+    } else {
+      onSend(input);
+      setDonezo(true);
     }
   };
+
+  useEffect(() => {
+    setTokens(encode(input));
+  }, [input]);
 
   return (
     <div className="flex flex-col">
@@ -22,17 +27,16 @@ const ChatInput = ({ onSend, donezo, setDonezo }: InputProps) => {
           <textarea
             className="w-full rounded-lg py-3 px-4 h-48 text-start border-2 bg-white border-slate-200"
             value={input}
-            maxLength={4098}
             onChange={(e) => setInput(e.target.value)}
-            onKeyDown={(e) => handleKeyDown(e)}
             placeholder="Input your notes"
           />
           <p
             className="text-right"
             style={{
-              color: input.length >= 4098 ? "rgb(220 0 0)" : "rgb(209 213 219)",
+              color:
+                tokens.length >= 2007 ? "rgb(220 0 0)" : "rgb(209 213 219)",
             }}>
-            {input.length}/4098
+            Tokens: {tokens.length}/2007
           </p>
         </>
       )}

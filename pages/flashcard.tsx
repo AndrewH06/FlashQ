@@ -119,14 +119,15 @@ const FlashCard = () => {
           </div>
         )}
         {loading && (
-          <>
+          <div className="flex flex-col items-center gap-2">
             <button
               className="font-semibold text-lg flex gap-2 items-center justify-center w-48 h-[48px] text-zinc-800/50 bg-gradient-to-t from-yellow-300/40  to-yellow-300/30 rounded-xl"
               disabled={true}>
               <AiOutlineLoading className="animate-spin" />
               Generating
             </button>
-          </>
+            <p className="text-sm text-gray-300">this could take a bit...</p>
+          </div>
         )}
         {cards && (
           <div className="flex flex-col gap-12 w-full items-center">
