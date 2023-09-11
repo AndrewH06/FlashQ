@@ -153,15 +153,14 @@ const FlashCard = () => {
               </div>
               <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
                 {cards.text.map((card: TextProps, index) => (
-                  <>
+                  <div key={index}>
                     <FlashCardComponent
                       front={card.front}
                       back={card.back}
-                      key={index}
                       preview={false}
                       reset={true}
                     />
-                  </>
+                  </div>
                 ))}
               </div>
             </div>

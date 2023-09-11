@@ -31,7 +31,7 @@ export default async function handler(
     messages: [
       {
         role: "user",
-        content: `Turn these notes into flashcards and format them as a json object with the keys "front" and "back" where "front" contains a question or definition and "back" contains the answer: ${prompt}`,
+        content: `Turn these notes into flashcards and format them as an array of json objects with the keys "front" and "back" where "front" contains a question or definition and "back" contains the answer: ${prompt}`,
       },
     ],
     temperature: 0.3,
