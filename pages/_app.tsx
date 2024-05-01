@@ -26,6 +26,7 @@ export default function App({ Component, pageProps }: AppProps) {
           name="description"
           content="FlashQ is the fastest way to study and prepare yourself for exams. It uses AI to generate flashcards or quizzes from your notes. FlashQ saves you from the hassle of retyping your notes into studyable questions. "
         />
+        <meta property="og:image" content="https://media.licdn.com/dms/image/D562DAQHAatPMs69oGw/profile-treasury-image-shrink_800_800/0/1694417511732?e=1715212800&v=beta&t=5qlhZrgrRSgCkuzwmVG_rNaHdBCFo_8sX4Z3SQ6SlJs" />
         <link rel="icon" href="/FlashQ.ico" />
         <script
           async
